@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table Escape Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://www.nist.gov/sites/default/files/styles/2800_x_2800_limit/public/images/2019/05/23/welcomia_ss_periodictbl_552027100.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #game {
+            width: 80%;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .room {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        img {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .message {
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* For the button game */
+        .game-button {
+            position: absolute;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .game-button:hover {
+            transform: scale(1.5);
+            font-size: 16px;
+        }
+
+        #gameArea {
+            position: relative;
+            height: 400px;
+            margin: 20px auto;
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        canvas {
+            background: #f0f0f0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        #shooter {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            border-radius: 50%;
+            bottom: 10px;
+        }
+
+        .bullet {
+            position: absolute;
+            width: 4px;
+            height: 10px;
+            background-color: red;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+  
+    <div id="game">
+        <!-- Room 1 -->
+        <div id="room1" class="room active">
+          <h1>Welcome to the Periodic Table Escape Room!</h1>
+          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</p>
+            <h2>Room 1: Introduction</h2>
+            <img src="https://agreatdream.com/wp-content/uploads/2012/04/question-mark.jpg" alt="Room 1">
+              <p>What is the name of the group with an incorrect element in 
+                <a href="https://docs.google.com/spreadsheets/d/1QFgSyX4K6ztCNNISvr7ClJFatAeFvr_RWHaiUB3YZ78/edit?gid=0#gid=0" target="_blank">this</a>
+              periodic table?</p>
+            <input type="text" id="answer1" placeholder="Enter your answer...">
+            <button onclick="checkAnswer(1)">Submit</button>
+            <div id="message1" class="message"></div>
+        </div>
+
+        <!-- Room 2 -->
+        <div id="room2" class="room">
+            <h2>Room 2: Word Puzzle</h2>
+            <img src="https://parkeastdayschool.b-cdn.net/wp-content/uploads/2019/01/ABC123.jpg" alt="Room 2">
+            <p>
+              WORD = [f g h i j k l m n]  
+              <p>
+                Find the element that matches the atomic number for each letter clue and replace the lowercase letter with the first letter of that element.
+              </p>
+              <p>f = How many NBA championships have the Chicago Bulls won?</p>
+              <p>g = How many eyes do you have?</p>
+              <p>h = How many problems does Jay Z have?</p>
+              <p>i = What is 6+6?</p>
+              <p>j = how many letters in the alphabet?</p>
+              <p>k = How many Olympic medals has Simone Biles won?</p>
+              <p>l = How many people can fit in a 73-seat bus?</p>
+              <p>m(Rhodium-atomic number 45)= Rhodium?</p>
+              <p>n = 70</p>
+              <p>ANS: 9 letters (no spaces)</p>
+            </p>
+
+            <input type="text" id="answer2" placeholder="Enter your answer...">
+            <button onclick="checkAnswer(2)">Submit</button>
+            <div id="message2" class="message"></div>
+        </div>
+        
+        <!-- Room 3 -->
+        <div id="room3" class="room">
+          <h2>Room 3: Connected to Room 2</h2>
+          <img src="https://cdn.britannica.com/13/220013-050-16EC5F2F/periodic-table-atomic-weight.jpg" alt="Room 3">
+          <p>Now list the elements from the previous question the lowest number of protons to highest number of protons with the corresponding lower-case letter with a comma in between (ex. h,g,n...)</p>
+          <p>ANS: 9 lower-case letters</p>
+          <input type="text" id="answer3" placeholder="Enter your answer...">
+          <button onclick="checkAnswer(3)">Submit</button>
+          <div id="message3" class="message"></div>
+        </div>
+
+        <!-- Room 4 -->
+        <div id="room4" class="room">
+          <h2>Room 4: ?-block</h2>
+          <img src="https://www.shutterstock.com/image-illustration/forbitals-atom-260nw-340322723.jpg" alt="Room 4">
+          <p>What period does the shown sub-orbital start in?</p>
+          <p>ANS: 1 number</p>
+          <input type="text" id="answer4" placeholder="Enter your answer...">
+          <button onclick="checkAnswer(4)">Submit</button>
+          <div id="message4" class="message"></div>
+        </div>
+
+        <!-- Room 5: Catch the Noble Gas -->
+        <div id="room5" class="room">
+            <h2>Room 5: Catch the Noble Gas!</h2>
+            <img src="https://i.pinimg.com/736x/3a/52/cd/3a52cd7f2c31b3b61eabb5ac811971d4.jpg" alt="Catch the Noble Gas">
+            <p>The elements will disappear after 1 second. Click the Noble Gas that is in the same period as the previous question. If you are too slow 🤣 😂 click the "Start" button to make the elements appear again.</p>
+            <button onclick="startGame()">Start</button>
+            <div id="gameArea"></div>
+            <div id="message5" class="message"></div>
+        </div>
+
+        <!-- Room 6: Shooting Alkali Metals -->
+        <div id="room6" class="room">
+            <h2>Room 6: Shoot the Alkali Metals!</h2>
+            <p>Move the shooter with the left and right arrows, and shoot with the spacebar. Destroy only alkali metals to proceed. (note: make sure the start game button is not conected to you space button by clicking at white space)</p>
+            <div id="gameArea6" style="position: relative; height: 300px; background-color: #f0f0f0; border: 2px solid #ccc; margin-top: 10px;"></div>
+            <div id="message6" class="message"></div>
+            <button onclick="startRoom6()">Start Game</button>
+        </div>
+
+
+
+    <script>
+        let currentRoom = 1; // Start from Room 1
+
+        const answers = {
+            1: "alkali metals",
+            2: "chemistry",
+            3: "g,f,k,i,j,m,n,l,h",
+            4: "6",
+            5: "17",
+            6: "lanthanoid series",
+            7: "f",
+            8: "d",
+            9: "4",
+            10: "d"
+        };
+
+        function checkAnswer(room) {
+            const userAnswer = document.getElementById(`answer${room}`).value.trim().toLowerCase();
+            if (userAnswer === answers[room]) {
+                document.getElementById(`message${room}`).innerText = "Correct! You can proceed to the next room.";
+                document.getElementById(`room${room}`).style.display = "none";
+                currentRoom++;
+                document.getElementById(`room${currentRoom}`).style.display = "block";
+            } else {
+                document.getElementById(`message${room}`).innerText = "Incorrect. Try again!";
+            }
+        }
+
+        // Function to create the interactive game for Room 5
+        function startGame() {
+            const gameArea = document.getElementById("gameArea");
+            gameArea.innerHTML = ""; // Clear previous buttons
+            const elements = [
+                { symbol: "Rn", name: "Radon" },  // Correct element
+                { symbol: "He", name: "Helium" },
+                { symbol: "O", name: "Oxygen" },
+                { symbol: "Li", name: "Lithium" },
+                { symbol: "Ne", name: "Neon" },
+                { symbol: "C", name: "Carbon" },
+                { symbol: "F", name: "Fluorine" },
+                { symbol: "Kr", name: "Krypton" },
+                { symbol: "Xe", name: "Xenon" }
+            ];
+
+            // Randomly position buttons and assign colors
+            elements.forEach((element, index) => {
+                const button = document.createElement("button");
+                button.innerText = element.symbol;
+                button.className = "game-button";
+                button.style.top = `${Math.random() * 90}%`;
+                button.style.left = `${Math.random() * 90}%`;
+                button.style.backgroundColor = getRandomColor();
+                button.onclick = () => checkElement(element.name);
+                gameArea.appendChild(button);
+            });
+
+            // Hide elements after 1 seconds
+            setTimeout(() => {
+                document.querySelectorAll(".game-button").forEach(button => {
+                    button.style.visibility = "hidden";
+                });
+            }, 1000);
+        }
+
+        // Function to check if the correct element (Radon) is clicked
+        function checkElement(elementName) {
+            const messageElement = document.getElementById("message5");
+
+            if (elementName === "Radon") {
+                messageElement.innerHTML = "Correct! You caught the Noble Gas in Period 6. Proceeding to the next room...";
+                setTimeout(() => {
+                    document.getElementById("room5").classList.remove("active");
+                    currentRoom++;
+                    document.getElementById(`room${currentRoom}`).classList.add("active");
+                }, 1000);
+            } else {
+                messageElement.innerHTML = "Wrong element! Try again.";
+            }
+        }
+
+        // Function to get random colors for each button
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        //alkali game
+
+        const alkaliMetals = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr']; // Alkali metals
+        const falseElements = ['H', 'He', 'Be', 'Mg', 'Ca', 'B']; // Non-alkali elements
+        let totalAlkaliMetals = alkaliMetals.length;
+        let shotAlkaliMetals = 0; // Counter for alkali metals shot
+        let floatingElements = []; // Store references to the floating elements
+        let shooter; // Shooter element
+        let gameArea;
+        let updateInterval; // Store the interval ID
+
+        function startRoom6() {
+            gameArea = document.getElementById('gameArea6');
+            gameArea.innerHTML = ''; // Clear game area
+
+            shotAlkaliMetals = 0; // Reset counter
+            floatingElements = []; // Reset floating elements
+
+            // Create shooter
+            shooter = document.createElement('div');
+            shooter.id = 'shooter';
+            shooter.style.position = 'absolute';
+            shooter.style.bottom = '10px';
+            shooter.style.left = '50%';
+            shooter.style.width = '30px';
+            shooter.style.height = '30px';
+            shooter.style.backgroundColor = 'black';
+            shooter.style.borderRadius = '50%';
+            gameArea.appendChild(shooter);
+
+            // Add keyboard controls
+            document.addEventListener('keydown', moveShooter);
+
+            // Create moving element buttons (both alkali and false elements)
+            for (let i = 0; i < alkaliMetals.length; i++) {
+                createFloatingElement(alkaliMetals[i], true); // True means it's an alkali metal
+            }
+            for (let i = 0; i < falseElements.length; i++) {
+                createFloatingElement(falseElements[i], false); // False means it's a false element
+            }
+
+            // Set an interval to update positions and colors every 5 seconds
+            updateInterval = setInterval(updateElementPositionsAndColors, 5000);
+        }
+
+        // Create floating elements (either alkali or false)
+        function createFloatingElement(elementText, isAlkali) {
+            const element = document.createElement('button');
+            element.classList.add('game-button');
+            element.textContent = elementText;
+            element.isAlkali = isAlkali; // Custom property to track if it's alkali or false element
+            element.style.left = Math.random() * (gameArea.offsetWidth - 50) + 'px';
+            element.style.top = Math.random() * (gameArea.offsetHeight - 200) + 'px'; // Avoid placing near the shooter
+            element.style.position = 'absolute';
+            element.style.backgroundColor = getRandomColor(); // Set random initial color
+
+            gameArea.appendChild(element);
+            floatingElements.push(element); // Store the element reference
+        }
+
+        // Move shooter left and right
+        function moveShooter(e) {
+            const shooterSpeed = 10;
+            if (e.key === 'ArrowLeft') {
+                shooter.style.left = Math.max(0, shooter.offsetLeft - shooterSpeed) + 'px';
+            } else if (e.key === 'ArrowRight') {
+                shooter.style.left = Math.min(gameArea.offsetWidth - shooter.offsetWidth, shooter.offsetLeft + shooterSpeed) + 'px';
+            } else if (e.key === ' ') {
+                shoot(); // Call shoot function when spacebar is pressed
+            }
+        }
+
+        // Shoot bullet from shooter
+        function shoot() {
+            const bullet = document.createElement('div');
+            bullet.classList.add('bullet');
+            bullet.style.position = 'absolute';
+            bullet.style.left = shooter.offsetLeft + shooter.offsetWidth / 2 - 2 + 'px'; // Center bullet
+            bullet.style.bottom = '30px'; // Start from above the shooter
+            bullet.style.width = '4px';
+            bullet.style.height = '10px';
+            bullet.style.backgroundColor = 'red';
+
+            gameArea.appendChild(bullet);
+
+            const bulletInterval = setInterval(() => {
+                bullet.style.bottom = parseInt(bullet.style.bottom) + 5 + 'px'; // Move bullet upwards
+                checkCollision(bullet, bulletInterval);
+            }, 20);
+        }
+
+        // Check if the bullet hits any of the floating elements
+        function checkCollision(bullet, bulletInterval) {
+            const bulletRect = bullet.getBoundingClientRect();
+
+            for (let i = 0; i < floatingElements.length; i++) {
+                const element = floatingElements[i];
+                const elementRect = element.getBoundingClientRect();
+
+                // Check if bullet collides with element
+                if (
+                    bulletRect.left < elementRect.right &&
+                    bulletRect.right > elementRect.left &&
+                    bulletRect.top < elementRect.bottom &&
+                    bulletRect.bottom > elementRect.top
+                ) {
+                    if (element.isAlkali) {
+                        // If alkali metal, destroy it
+                        gameArea.removeChild(element);
+                        floatingElements.splice(i, 1); // Remove from list
+                        shotAlkaliMetals++;
+                        if (shotAlkaliMetals === totalAlkaliMetals) {
+                            clearInterval(updateInterval);
+                            moveToRoom7(); // Move to next room if all alkali metals are shot
+                        }
+                    } else {
+                        // If it's a false element, show a message
+                        document.getElementById('message6').innerText = 'Wrong element! That’s not an alkali metal.';
+                    }
+                    gameArea.removeChild(bullet); // Remove the bullet
+                    clearInterval(bulletInterval); // Stop the bullet
+                    return;
+                }
+            }
+
+            // Remove the bullet if it goes off screen
+            if (parseInt(bullet.style.bottom) > gameArea.offsetHeight) {
+                gameArea.removeChild(bullet);
+                clearInterval(bulletInterval);
+            }
+        }
+
+        // Update positions and colors of floating elements
+        function updateElementPositionsAndColors() {
+            for (let i = 0; i < floatingElements.length; i++) {
+                const element = floatingElements[i];
+                element.style.left = Math.random() * (gameArea.offsetWidth - 50) + 'px';
+                element.style.top = Math.random() * (gameArea.offsetHeight - 200) + 'px'; // Avoid placing near the shooter
+                element.style.backgroundColor = getRandomColor(); // Change color
+            }
+        }
+
+        // Helper function to generate random colors
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function moveToRoom7() {
+            document.getElementById('room6').style.display = 'none'; // Hide Room 6
+            document.getElementById('room7').style.display = 'block'; // Show Room 7
+            document.getElementById('message6').innerText = ' (there is no next) room'; // Clear any message
+        }
+
+    </script>
+</body>
+</html>
