@@ -135,7 +135,7 @@
         <!-- Room 1 -->
         <div id="room1" class="room active">
           <h1>Welcome to the Periodic Table Escape Room!</h1>
-          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</p>
+          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because most questions are connected. Taking photos are recommended as the answer will disapear once it has been submitted. Good luck!</p>
             <h2>Room 1: Introduction</h2>
             <img src="https://agreatdream.com/wp-content/uploads/2012/04/question-mark.jpg" alt="Room 1">
               <p>What is the name of the group with an incorrect element in 
@@ -206,18 +206,38 @@
 
         <!-- Room 6: Shooting Alkali Metals -->
         <div id="room6" class="room">
-            <h2>Room 6: Shoot the Alkali Metals!</h2>
-            <p>Move the shooter with the left and right arrows, and shoot with the spacebar. Destroy only alkali metals to proceed. (note: make sure the start game button is not conected to you space button by clicking at white space)</p>
+            <h2>Room 6: Destroy the Alkali Metals!</h2>
+            <p>Move the firing canon with the left and right arrows, and fire with the spacebar. Destroy only alkali metals to proceed. You can shoot at any element, but only alkali metals will be destroyed!(note: if the border of the 'start game' button has a black border it is conected to your space bar which will restart the game everytime you try to fire, fix this by clicking at white space)</p>
             <div id="gameArea6" style="position: relative; height: 300px; background-color: #f0f0f0; border: 2px solid #ccc; margin-top: 10px;"></div>
             <div id="message6" class="message"></div>
             <button onclick="startRoom6()">Start Game</button>
         </div>
 
+        <!-- Room 7 - Question Room -->
+        <div id="room7" class="room">
+          <h2>Room 7: Can Aarib Just Do the Math</h2>
+          <img src="https://example.com/room7_image.jpg" alt="Room 7">
+          <p> think back to question two the code must be multiplied by a an unknown number to find a new  four code the value of e is carbon times 10^7  hint use (c=LamdaF)</p>
+          <input type="text" id="answer7" placeholder="Enter your answer...">
+          <button onclick="checkAnswer(7)">Submit</button>
+          <div id="message7" class="message"></div>
+      </div>
+
+      <!-- Room 8 - Radius Question? -->
+      <div id="room8" class="room">
+        <h2>Room 8: What element am I?</h2>
+        <img src="https://example.com/your_image.jpg" alt="Room 8">
+        <p>I have an atomic radius of 160 pm, yet I belong to a group where most elements are significantly smaller. I am located in Period 5, and my atomic number is greater than 50."</p>
+        <input type="text" id="answer8" placeholder="Enter your answer...">
+        <button onclick="checkAnswer(8)">Submit</button>
+        <div id="message8" class="message"></div>
+    </div>
 
 
     <script>
         let currentRoom = 1; // Start from Room 1
 
+        
         const answers = {
             1: "alkali metals",
             2: "chemistry",
@@ -225,10 +245,9 @@
             4: "6",
             5: "17",
             6: "lanthanoid series",
-            7: "f",
-            8: "d",
-            9: "4",
-            10: "d"
+            7: ":)",
+            8: "neon",
+            // Additional rooms can be added with their answers here
         };
 
         function checkAnswer(room) {
@@ -242,6 +261,7 @@
                 document.getElementById(`message${room}`).innerText = "Incorrect. Try again!";
             }
         }
+
 
         // Function to create the interactive game for Room 5
         function startGame() {
@@ -284,7 +304,7 @@
             const messageElement = document.getElementById("message5");
 
             if (elementName === "Radon") {
-                messageElement.innerHTML = "Correct! You caught the Noble Gas in Period 6. Proceeding to the next room...";
+                messageElement.innerHTML = "Correct! You caught the Noble Gas in Period 6. Proceeding to the next room...(may need to scroll down)";
                 setTimeout(() => {
                     document.getElementById("room5").classList.remove("active");
                     currentRoom++;
@@ -422,7 +442,7 @@
                         }
                     } else {
                         // If it's a false element, show a message
-                        document.getElementById('message6').innerText = 'Wrong element! That’s not an alkali metal.';
+                        document.getElementById('message6').innerText = 'That’s not an alkali metal...keep firing at the ALKALI METALS';
                     }
                     gameArea.removeChild(bullet); // Remove the bullet
                     clearInterval(bulletInterval); // Stop the bullet
@@ -458,9 +478,9 @@
         }
 
         function moveToRoom7() {
+            document.getElementById('room5').style.display = 'none'; // Hide Room 5
             document.getElementById('room6').style.display = 'none'; // Hide Room 6
             document.getElementById('room7').style.display = 'block'; // Show Room 7
-            document.getElementById('message6').innerText = ' (there is no next) room'; // Clear any message
         }
 
     </script>
