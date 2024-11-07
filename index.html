@@ -125,6 +125,32 @@
             background-color: red;
         }
 
+        /* Style for the congratulations badge */
+        .badge {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background-color: #FFD700;
+            background-image: url("https://www.cbssports.com/_next/image?url=https%3A%2F%2Fsportshub.cbsistatic.com%2Fi%2Fsports%2Fplayer%2Fheadshot%2F400553.png%3Fwidth%3D200&w=3840&q=75https://www.cbssports.com/_next/image?url=https%3A%2F%2Fsportshub.cbsistatic.com%2Fi%2Fsports%2Fplayer%2Fheadshot%2F400553.png");
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .badge:before {
+            content: "🏆";
+            font-size: 48px;
+            position: absolute;
+            top: -40px;
+            color: #FFD700;
+            filter: drop-shadow(0px 0px 10px #FFD700);
+        }
         
 
     </style>
@@ -135,12 +161,16 @@
         <!-- Room 1 -->
         <div id="room1" class="room active">
           <h1>Welcome to the Periodic Table Escape Room!</h1>
-          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because most questions are connected. Taking photos are recommended as the answer will disapear once it has been submitted. Good luck!</p>
+          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because questions are connected. Taking photos are recommended as the answer will disapear once it has been submitted.</p>
+
+          <p>There are 10 rooms to escape from.  Good luck!</p>
             <h2>Room 1: Introduction</h2>
             <img src="https://agreatdream.com/wp-content/uploads/2012/04/question-mark.jpg" alt="Room 1">
               <p>What is the name of the group with an incorrect element in 
                 <a href="https://docs.google.com/spreadsheets/d/1QFgSyX4K6ztCNNISvr7ClJFatAeFvr_RWHaiUB3YZ78/edit?gid=0#gid=0" target="_blank">this</a>
               periodic table?</p>
+            
+            <p>hint: This group is very reactive</p>
             <input type="text" id="answer1" placeholder="Enter your answer...">
             <button onclick="checkAnswer(1)">Submit</button>
             <div id="message1" class="message"></div>
@@ -165,6 +195,7 @@
               <p>m(Rhodium-atomic number 45)= Rhodium?</p>
               <p>n = 70</p>
               <p>ANS: 9 letters (no spaces)</p>
+              <p>TAKE PHOTO OF THIS QUESTION</p>
             </p>
 
             <input type="text" id="answer2" placeholder="Enter your answer...">
@@ -206,8 +237,12 @@
 
         <!-- Room 6: Shooting Alkali Metals -->
         <div id="room6" class="room">
-            <h2>Room 6: Destroy the Alkali Metals!</h2>
-            <p>Move the firing canon with the left and right arrows, and fire with the spacebar. Destroy only alkali metals to proceed. You can shoot at any element, but only alkali metals will be destroyed!(note: if the border of the 'start game' button has a black border it is conected to your space bar which will restart the game everytime you try to fire, fix this by clicking at white space)</p>
+            <h2>Room 6: Destroy the Elements!</h2>
+            <p>Move the firing canon with the left and right arrows, and fire with the spacebar. Destroy only the elements in the group with the most reactive metals to proceed. You can fire at any element and keep going, but only the most reactive metals will be destroyed!
+            <p>note: if the border of the 'start game' button has a black border it is conected to your space bar which will restart the game everytime you try to fire, fix this by clicking at white space</p>
+            
+            <p>hint: these elements are in the same group as the answer to room 1</p>
+            </p>
             <div id="gameArea6" style="position: relative; height: 300px; background-color: #f0f0f0; border: 2px solid #ccc; margin-top: 10px;"></div>
             <div id="message6" class="message"></div>
             <button onclick="startRoom6()">Start Game</button>
@@ -215,24 +250,81 @@
 
         <!-- Room 7 - Question Room -->
         <div id="room7" class="room">
-          <h2>Room 7: Can Aarib Just Do the Math</h2>
-          <img src="https://example.com/room7_image.jpg" alt="Room 7">
-          <p> think back to question two the code must be multiplied by a an unknown number to find a new  four code the value of e is carbon times 10^7  hint use (c=LamdaF)</p>
+          <h2>Room 7: Electronegativity</h2>
+          <img src="https://t4.ftcdn.net/jpg/00/83/43/27/360_F_83432792_0YxFNII0QOHiQ6ZJdRFVaZXaY1kLZjXQ.jpg" alt="Room 7">
+          <p> The following elements abilities to attract spell out a word using the first letter of the corresponding elements.</p>
+          
+          <p>Provide the answer in the format (1,2,3,4) to decode the correct word.</p>
+          
+          <p>Use the <a href="https://sd40bcca-my.sharepoint.com/:x:/g/personal/1142818_newwestschools_ca/EQH_-OC-sn5KhE2F0nQkWJ4Bjn3l8gTIAVk4wtFf-sA-mA?e=uzZZRU" target="_blank">Excel Chart</a>
+          to assist you.</p>
+
+          <b><p>Values: 0.8, 2.7, 3.0, 1.8</p></b>
+
+          <p>tip: to make finding the elements faster remember that electronegativity generally increases as you move from left to right across a period and decreases as you move down a group</p>
+
           <input type="text" id="answer7" placeholder="Enter your answer...">
           <button onclick="checkAnswer(7)">Submit</button>
           <div id="message7" class="message"></div>
       </div>
 
-      <!-- Room 8 - Radius Question? -->
+      <!-- Room 8 -->
       <div id="room8" class="room">
-        <h2>Room 8: What element am I?</h2>
-        <img src="https://example.com/your_image.jpg" alt="Room 8">
-        <p>I have an atomic radius of 160 pm, yet I belong to a group where most elements are significantly smaller. I am located in Period 5, and my atomic number is greater than 50."</p>
+        <h2>Room 8: Lots of Math</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/64/Math_Lady_meme.jpg" alt="Room 8">
+        <p> The combination of element symbols <p>Li Es B Rb O N represents a number </p></p>
+        
+        <p>However, this number must first be multiplied by an unknown factor to produce a three-digit code. 
+        </p>
+        
+        <p>This unknown factor is given by the equation ( C = lambda * F ), where ( C = 3 * 10^8 ) and ( F = Boron * 10^7 ).</p>
+
+        <p>hint: add their atomic numbers.</p>
+
+        <p>ANS: 3 numbers</p>
         <input type="text" id="answer8" placeholder="Enter your answer...">
         <button onclick="checkAnswer(8)">Submit</button>
         <div id="message8" class="message"></div>
     </div>
 
+    <!-- Room 9 - -->
+    <div id="room9" class="room">
+        <h2>Room 9: Radius???</h2>
+        <p> What happens to atomic radius as you move from left to right across a period on the periodic table??</p>
+
+        <p>ANS: 9 letter word</p>
+        <input type="text" id="answer9" placeholder="Enter your answer...">
+        <button onclick="checkAnswer(9)">Submit</button>
+        <div id="message9" class="message"></div>
+    </div>
+
+    
+
+    <!-- Room 10 - -->
+    <div id="room10" class="room">
+        <h2>Room 10: Ionization Energy</h2>
+        <img src="https://byjus-answer-creation.s3.amazonaws.com/uploads/image.png_img_upload_solution_2022-06-14%2017:39:21.738681.png" alt="Room 10">
+        <p> What effect is responisble for magnesium (Mg) having a higher ionization energy than sodium (Na)?</p>
+
+        <p>hint: relates to room 7 and room 9</p>
+
+        <p>ANS: 2 words</p>
+        <input type="text" id="answer10" placeholder="Enter your answer...">
+        <button onclick="checkAnswer(10)">Submit</button>
+        <div id="message10" class="message"></div>
+    </div>
+
+    <!-- Room 11: Congratulations Room -->
+    <div id="room11" class="room">
+        <div class="badge">
+        </div>
+        <h2>Congratulations!</h2>
+        <p>You’ve successfully completed the Periodic Table Escape Room!</p>
+        <p>Great Work! You can click below to "share" your achievement</p>
+        <button onclick="shareAchievement()">Confirmation of completion</button>
+        <div id="message11" class="message"></div>
+    </div>
+    </div>
 
     <script>
         let currentRoom = 1; // Start from Room 1
@@ -243,11 +335,12 @@
             2: "chemistry",
             3: "g,f,k,i,j,m,n,l,h",
             4: "6",
-            5: "17",
-            6: "lanthanoid series",
-            7: ":)",
-            8: "neon",
-            // Additional rooms can be added with their answers here
+            5: "Rn",
+            6: "lithium (Li), sodium (Na), potassium (K), rubidium (Rb), caesium (Cs), and francium (Fr)",
+            7: "75,73,78,71",
+            8: "954",
+            9: "decreases",
+            10: "shielding effect",
         };
 
         function checkAnswer(room) {
@@ -442,7 +535,7 @@
                         }
                     } else {
                         // If it's a false element, show a message
-                        document.getElementById('message6').innerText = 'That’s not an alkali metal...keep firing at the ALKALI METALS';
+                        document.getElementById('message6').innerText = 'That’s a wrong element...keep firing';
                     }
                     gameArea.removeChild(bullet); // Remove the bullet
                     clearInterval(bulletInterval); // Stop the bullet
@@ -481,6 +574,11 @@
             document.getElementById('room5').style.display = 'none'; // Hide Room 5
             document.getElementById('room6').style.display = 'none'; // Hide Room 6
             document.getElementById('room7').style.display = 'block'; // Show Room 7
+        }
+
+        function shareAchievement() {
+            document.getElementById("message8").innerText = "Congratulations! You've claimed your badge!";
+            alert("Achievement shared! You've completed the Periodic Table Escape Room.");
         }
 
     </script>
