@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Periodic Table Escape Room</title>
     <style>
+
+
+        .active {
+            display: block; /* Only active rooms are shown */
+        }
         body {
             font-family: Arial, sans-serif;
             background: url('https://www.nist.gov/sites/default/files/styles/2800_x_2800_limit/public/images/2019/05/23/welcomia_ss_periodictbl_552027100.jpg') no-repeat center center fixed;
@@ -151,19 +156,43 @@
             color: #FFD700;
             filter: drop-shadow(0px 0px 10px #FFD700);
         }
+
+         /* Specific Styles for Rooms */
         
+
+        #room1 {
+            background-color: #e74c3c; /* Red for Alkali Metals */
+            background-image: url('https://www.w3schools.com/w3images/chemistry.jpg');
+            background-size: cover;
+            color: #ecf0f1;
+        }
+
+        #room7 {
+            background-color: #3498db; /* Blue for Noble Gases */
+            background-image: url('https://www.w3schools.com/w3images/space.jpg');
+            background-size: cover;
+            color: #ecf0f1;
+        }
 
     </style>
 </head>
 <body>
   
     <div id="game">
-        <!-- Room 1 -->
-        <div id="room1" class="room active">
-          <h1>Welcome to the Periodic Table Escape Room!</h1>
-          <p>Make sure you WRITE DOWN THE ANSWER AND QUESTION for each room somewhere because questions are connected. Taking photos are recommended as the answer will disapear once it has been submitted.</p>
 
-          <p>There are 10 rooms to escape from.  Good luck!</p>
+            <!-- Welcome Room -->
+            <div id="welcomeRoom" class="room active">
+                <img src="https://i.pinimg.com/736x/1c/7c/99/1c7c99d89c09599aa00698b263880a05.jpg" alt="welcome">
+                <h1>Welcome to the Periodic Table Escape Room!</h1>
+                <p>You and your team have been transported into the heart of a novel.</p>
+            <p>Time is running out, and the world is at risk of ending unless you solve all the puzzles!</p>
+                <p>Make sure to WRITE DOWN the answers and questions for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</p>
+                At the end you will recieve a reward completely out of this world
+                <button onclick="startEscape()">Start</button>
+            </div>
+
+        <!-- Room 1 -->
+        <div id="room1" class="room">
             <h2>Room 1: Introduction</h2>
             <img src="https://agreatdream.com/wp-content/uploads/2012/04/question-mark.jpg" alt="Room 1">
               <p>What is the name of the group with an incorrect element in 
@@ -181,6 +210,8 @@
             <h2>Room 2: Word Puzzle</h2>
             <img src="https://parkeastdayschool.b-cdn.net/wp-content/uploads/2019/01/ABC123.jpg" alt="Room 2">
             <p>
+              <b><p>TAKE PHOTO OF THIS QUESTION</p></b>
+
               WORD = [f g h i j k l m n]  
               <p>
                 Find the element that matches the atomic number for each letter clue and replace the lowercase letter with the first letter of that element.
@@ -195,7 +226,7 @@
               <p>m(Rhodium-atomic number 45)= Rhodium?</p>
               <p>n = 70</p>
               <p>ANS: 9 letters (no spaces)</p>
-              <p>TAKE PHOTO OF THIS QUESTION</p>
+              
             </p>
 
             <input type="text" id="answer2" placeholder="Enter your answer...">
@@ -218,7 +249,7 @@
         <div id="room4" class="room">
           <h2>Room 4: ?-block</h2>
           <img src="https://www.shutterstock.com/image-illustration/forbitals-atom-260nw-340322723.jpg" alt="Room 4">
-          <p>What period does the shown sub-orbital start in?</p>
+          <p>What <b>period</b> does the shown sub-orbital start in?</p>
           <p>ANS: 1 number</p>
           <input type="text" id="answer4" placeholder="Enter your answer...">
           <button onclick="checkAnswer(4)">Submit</button>
@@ -254,7 +285,7 @@
           <img src="https://t4.ftcdn.net/jpg/00/83/43/27/360_F_83432792_0YxFNII0QOHiQ6ZJdRFVaZXaY1kLZjXQ.jpg" alt="Room 7">
           <p> The following elements abilities to attract spell out a word using the first letter of the corresponding elements.</p>
           
-          <p>Provide the answer in the format (1,2,3,4) to decode the correct word.</p>
+          <p>Provide the answer in the format no spaces (1,2,3,4) to decode the correct word.</p>
           
           <p>Use the <a href="https://sd40bcca-my.sharepoint.com/:x:/g/personal/1142818_newwestschools_ca/EQH_-OC-sn5KhE2F0nQkWJ4Bjn3l8gTIAVk4wtFf-sA-mA?e=uzZZRU" target="_blank">Excel Chart</a>
           to assist you.</p>
@@ -304,7 +335,7 @@
     <div id="room10" class="room">
         <h2>Room 10: Ionization Energy</h2>
         <img src="https://byjus-answer-creation.s3.amazonaws.com/uploads/image.png_img_upload_solution_2022-06-14%2017:39:21.738681.png" alt="Room 10">
-        <p> What effect is responisble for magnesium (Mg) having a higher ionization energy than sodium (Na)?</p>
+        <p> What <b>effect</b> is responisble for magnesium (Mg) having a higher ionization energy than sodium (Na)?</p>
 
         <p>hint: relates to room 7 and room 9</p>
 
@@ -327,7 +358,7 @@
     </div>
 
     <script>
-        let currentRoom = 1; // Start from Room 1
+        let currentRoom = 4; // Start from welcome room
 
         
         const answers = {
@@ -342,6 +373,19 @@
             9: "decreases",
             10: "shielding effect",
         };
+
+        function startEscape() {
+            // Hide the Welcome Room and show Room 1
+            document.getElementById('welcomeRoom').classList.remove('active');
+            document.getElementById('room1').classList.add('active');
+            currentRoom = 1; // Move to Room 1
+        }
+
+        function moveToRoom(roomNumber) {
+            document.querySelector(".room.active").classList.remove("active");
+            document.getElementById(`room${roomNumber}`).classList.add("active");
+            currentRoom = roomNumber;
+        }
 
         function checkAnswer(room) {
             const userAnswer = document.getElementById(`answer${room}`).value.trim().toLowerCase();
