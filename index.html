@@ -187,8 +187,9 @@
                 <p>You and your team have been transported here to overcome periodic table challenges to prove you are worthy of the golden badge that will grant you unimaginary power</p>
                 <p>Time is running out, and the world is at risk of ending unless you solve all the puzzles!</p>
                 <p><b>Make sure to WRITE DOWN the answers and questions for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</b></p>
-                <b>DO NOT RELOAD</b>
-                <here is a <a href="https://docs.google.com/spreadsheets/d/1QFgSyX4K6ztCNNISvr7ClJFatAeFvr_RWHaiUB3YZ78/edit?gid=0#gid=0" target="_blank">Periodic Table</a>to aid you in your journey</p>
+                <p><b>DO NOT RELOAD THE PAGE AS IT WILL RESET</b></p>
+                here is a <a href="https://ptable.com/#Properties" target="_blank">Periodic Table</a> to aid you in your journey</p>
+                <p>You are welcome to use google and your personal tools to combat each room however it will take more than information to solve each room</p>
                 <button onclick="startEscape()">Start</button>
             </div>
 
@@ -224,7 +225,7 @@
               <p>j = how many letters in the alphabet?</p>
               <p>k = How many Olympic medals has Simone Biles won?</p>
               <p>l = How many people can fit in a 73-seat bus?</p>
-              <p>m(Rhodium-atomic number 45)= Rhodium?</p>
+              <p>m = How old is the current head of the NDP?</p>
               <p>n = 70</p>
               <p>ANS: 9 letters (no spaces)</p>
               
@@ -270,8 +271,8 @@
         <!-- Room 6: Shooting Alkali Metals -->
         <div id="room6" class="room">
             <h2>Room 6: Destroy the Elements!</h2>
-            <p>Move the firing canon with the left and right arrows, and fire with the spacebar. Destroy only the elements in the group with the most reactive metals to proceed. You can fire at any element and keep going, but only the most reactive metals will be destroyed!
-            <p>note: if the border of the 'start game' button has a black border it is conected to your space bar which will restart the game everytime you try to fire, fix this by clicking at white space</p>
+            <p>Move the firing canon with the left and right arrows on your keyboard, and fire with the spacebar. Destroy only the elements in the group with the most reactive metals to proceed. You can fire at any element and keep going, but only the most reactive metals will be destroyed!
+            <p><b>WARNING</b>: if the border of the 'start game' button has a black border it is connected to your space bar which will restart the game everytime you try to fire, fix this by clicking at white space</p>
             
             <p>hint: these elements are in the same group as the answer to room 1</p>
             </p>
@@ -357,6 +358,7 @@
         <p>Add the number of electrons of the last two elements in your sequence for the last two digits of the code.</p>
 
         <p>ANS: 4 numbers</p>
+        <p>hint: look at the IB databooket</p>
         <input type="text" id="answer11" placeholder="Enter your answer...">
         <button onclick="checkAnswer(11)">Submit</button>
         <div id="message11" class="message"></div>
@@ -664,7 +666,7 @@
 
         function shareAchievement() {
             document.getElementById("message8").innerText = "Congratulations! You've claimed your badge!";
-            alert("Achievement shared! You've completed the Periodic Table Escape Room.");
+            alert("Returning back to Ms K's class! You've completed the Periodic Table Escape Room.");
         }
 
     </script>
