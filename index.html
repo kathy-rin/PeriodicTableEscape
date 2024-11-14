@@ -183,11 +183,12 @@
             <!-- Welcome Room -->
             <div id="welcomeRoom" class="room active">
                 <img src="https://i.pinimg.com/736x/1c/7c/99/1c7c99d89c09599aa00698b263880a05.jpg" alt="welcome">
-                <h1>Welcome to the Periodic Table Escape Room!</h1>
-                <p>You and your team have been transported into the heart of a novel.</p>
-            <p>Time is running out, and the world is at risk of ending unless you solve all the puzzles!</p>
-                <p>Make sure to WRITE DOWN the answers and questions for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</p>
-                At the end you will recieve a reward completely out of this world
+                <h1>The World is ENDING and needs your team's  knowledge of the periodic table to pass these 12 rooms and unlock the golden badge that will save the world from destruction</h1>
+                <p>You and your team have been transported here to overcome periodic table challenges to prove you are worthy of the golden badge that will grant you unimaginary power</p>
+                <p>Time is running out, and the world is at risk of ending unless you solve all the puzzles!</p>
+                <p><b>Make sure to WRITE DOWN the answers and questions for each room somewhere because most questions are connected. Taking a photo is recommended. Good luck!</b></p>
+                <b>DO NOT RELOAD</b>
+                <here is a <a href="https://docs.google.com/spreadsheets/d/1QFgSyX4K6ztCNNISvr7ClJFatAeFvr_RWHaiUB3YZ78/edit?gid=0#gid=0" target="_blank">Periodic Table</a>to aid you in your journey</p>
                 <button onclick="startEscape()">Start</button>
             </div>
 
@@ -238,7 +239,7 @@
         <div id="room3" class="room">
           <h2>Room 3: Connected to Room 2</h2>
           <img src="https://cdn.britannica.com/13/220013-050-16EC5F2F/periodic-table-atomic-weight.jpg" alt="Room 3">
-          <p>Now list the elements from the previous question the lowest number of protons to highest number of protons with the corresponding lower-case letter with a comma in between (ex. h,g,n...)</p>
+          <p>Now list the elements from the previous question from the lowest number of protons to highest number of protons. Use the corresponding lower-case letter with a comma in between (ex. h,g,n...)</p>
           <p>ANS: 9 lower-case letters</p>
           <input type="text" id="answer3" placeholder="Enter your answer...">
           <button onclick="checkAnswer(3)">Submit</button>
@@ -345,20 +346,59 @@
         <div id="message10" class="message"></div>
     </div>
 
-    <!-- Room 11: Congratulations Room -->
+    <!-- Room 11 - -->
     <div id="room11" class="room">
+        <h2>Room 11: Two more to go</h2>
+        <img src="https://cdn.pixabay.com/photo/2016/12/13/17/54/safe-1904759_1280.jpg" alt="Room 11">
+        <p>To unlock the safe, you need to arrange these elements by increasing atomic radius: Carbon (C), Sodium (Na), Magnesium (Mg), and Sulfur (S).</p>
+
+        <p>Add the number of electrons of the first two elements in your sequence for the first two digits of the code.</p> 
+        
+        <p>Add the number of electrons of the last two elements in your sequence for the last two digits of the code.</p>
+
+        <p>ANS: 4 numbers</p>
+        <input type="text" id="answer11" placeholder="Enter your answer...">
+        <button onclick="checkAnswer(11)">Submit</button>
+        <div id="message11" class="message"></div>
+    </div>
+
+    <!-- Room 12 - -->
+    <div id="room12" class="room">
+        <h2>Room 12: Electron Affinity...The final room</h2>
+        <img src="https://img.freepik.com/free-vector/padlock-coloured-outline_78370-548.jpg" alt="Room 12">
+        <p>To open the safe and unlock the badge, you need to arrange these elements by increasing electron affinity: Phosphorus (P), Chlorine (Cl), Sulfur (S), and Bromine (Br). </p>
+
+        <p>Once you've arranged them correctly:</p> 
+        
+        <p>Add the atomic numbers of the first two elements for the first two digits of the code.</p>
+
+        <p>Add the atomic numbers of the last two elements for the last two digits of the code.</p>
+
+        <p>Subtract the sum of the first two digits from the sum of the last two digits to get the final 4-digit code</p>
+
+        <p>ANS: 2 numbers</p>
+        <p>hint: look at the IB databooket</p>
+        <input type="text" id="answer12" placeholder="Enter your answer...">
+        <button onclick="checkAnswer(12)">Submit</button>
+        <div id="message12" class="message"></div>
+    </div>
+
+
+
+    <!-- Room 13: Congratulations Room -->
+    <div id="room13" class="room">
         <div class="badge">
         </div>
-        <h2>Congratulations!</h2>
-        <p>You’ve successfully completed the Periodic Table Escape Room!</p>
-        <p>Great Work! You can click below to "share" your achievement</p>
-        <button onclick="shareAchievement()">Confirmation of completion</button>
-        <div id="message11" class="message"></div>
+        <h2>Thank You For Saving Us!</h2>
+        <p>You are a hero. My children will have a future because of your hardwork, dedication, and knowledge</p>
+        <p>I will never forget you</p>
+        <button onclick="shareAchievement()">Return back to your world</button>
+        <div id="message13" class="message"></div>
     </div>
     </div>
 
     <script>
-        let currentRoom = 4; // Start from welcome room
+        let currentRoom = 0; // Start from welcome room
 
         
         const answers = {
@@ -372,6 +412,8 @@
             8: "954",
             9: "decreases",
             10: "shielding effect",
+            11: "2223",
+            12: "21",
         };
 
         function startEscape() {
