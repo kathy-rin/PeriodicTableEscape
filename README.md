@@ -1,3 +1,3 @@
 <p>READ ME</p>
-#How to play
-idk yet
+#Escape Room to learn more about the Periodic Table
+#For IB Chemistry 11
